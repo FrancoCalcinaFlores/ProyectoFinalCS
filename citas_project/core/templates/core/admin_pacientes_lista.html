@@ -1,0 +1,42 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Listado de Pacientes{% endblock %}
+
+{% block content %}
+<div style="max-width: 900px; margin: 0 auto;">
+    <h2>Listado de Pacientes</h2>
+    <p>Gestiona los datos de los pacientes registrados en el sistema.</p>
+
+    <div style="display:flex; gap:10px; margin-bottom:15px; flex-wrap:wrap;">
+        <a href="{% url 'admin_paciente_nuevo' %}" class="btn">➕ Crear nuevo paciente</a>
+        <a href="{% url 'admin_dashboard' %}" class="btn btn-secondary">⏪ Volver al panel</a>
+    </div>
+
+    {% if pacientes %}
+        <table style="width:100%; border-collapse:collapse; background:white; border-radius:10px; overflow:hidden; box-shadow:0 2px 6px rgba(0,0,0,0.08);">
+            <thead style="background:#3498db; color:white;">
+                <tr>
+                    <th style="padding:10px; text-align:left;">Nombre</th>
+                    <th style="padding:10px; text-align:left;">DNI</th>
+                    <th style="padding:10px; text-align:left;">Teléfono</th>
+                    <th style="padding:10px; text-align:left;">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for p in pacientes %}
+                <tr style="border-bottom:1px solid #eee;">
+                    <td style="padding:8px 10px;">{{ p.user.first_name }} {{ p.user.last_name }}</td>
+                    <td style="padding:8px 10px;">{{ p.dni }}</td>
+                    <td style="padding:8px 10px;">{{ p.telefono }}</td>
+                    <td style="padding:8px 10px;">
+                        <a href="{% url 'admin_paciente_editar' p.id %}" class="btn btn-small">✏️ Editar</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No hay pacientes registrados.</p>
+    {% endif %}
+</div>
+{% endblock %}
