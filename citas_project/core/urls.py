@@ -11,6 +11,7 @@ urlpatterns = [
     # Panel persona
     path('persona/dashboard/', views.persona_dashboard, name='persona_dashboard'),
     path('persona/citas-disponibles/', views.persona_citas_disponibles, name='persona_citas_disponibles'),
+    path('persona/citas/nueva/', views.persona_cita_nueva, name='persona_cita_nueva'),
 
     # Panel admin
     path('panel-admin/dashboard/', views.admin_dashboard, name='admin_dashboard'),

@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.models import User
 from .models import Paciente, Cita, Consulta
-from .forms import LoginForm, ConsultaForm
+from .forms import LoginForm, ConsultaForm, CitaForm
 
 
 def is_admin(user):
@@ -106,6 +106,28 @@ def persona_citas_disponibles(request):
 
     return render(request, 'core/persona_citas_disponibles.html', {
         'citas_disponibles': citas_disponibles
+    })
+    
+@login_required
+def persona_cita_nueva(request):
+    if not hasattr(request.user, 'paciente'):
+        return redirect('login_persona')
+
+    paciente = request.user.paciente
+    mensaje = ""
+
+    if request.method == "POST":
+        form = CitaForm(request.POST)
+        if form.is_valid():
+            cita = form.save(commit=False)
+            cita.paciente = paciente     # asignar automáticamente al paciente
+            cita.save()
+            return redirect("persona_dashboard")
+    else:
+        form = CitaForm()
+
+    return render(request, 'core/persona_cita_nueva.html', {
+        "form": form
     })
 
 
