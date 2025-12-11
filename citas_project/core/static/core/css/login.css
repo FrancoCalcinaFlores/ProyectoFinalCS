@@ -1,0 +1,144 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.principal {
+  background-color: #f4f6f9;
+  padding: 0;
+  min-height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.caja {
+  height: clamp(300px, 600px, 800px);
+  width: clamp(300px, 900px, 1200px);
+  display: flex;
+}
+.barra1 {
+  /* Fondo 1: color degradado con transparencia */
+  background:
+    linear-gradient(to bottom, rgba(31, 73, 179, 0.6), rgba(19, 84, 88, 0.6)),
+    url("../doctores.jpg");
+
+  background-size: cover;
+  background-position: center;
+
+  border-top-left-radius: 25px;
+  border-bottom-left-radius: 25px;
+  width: clamp(500px, 50%, 900px);
+  padding: 10px;
+}
+
+.barra1 h3 {
+  padding: 20px;
+  font-size: 2rem;
+  color: white;
+  font-weight: 600;
+}
+.barra1 h2 {
+  padding: 0px 20px;
+  font-size: 3rem;
+  margin-bottom: 30px;
+  color: white;
+  font-weight: 600;
+}
+.barra1 p {
+  padding: 0px 20px;
+  color: #d0daf3;
+  font-size: 1.2rem;
+}
+.container {
+  background-color: #f4f6f9;
+  box-shadow: none;
+}
+.barra2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* border: rgb(38, 0, 255) 2px solid;*/
+  width: clamp(500px, 50%, 900px);
+  border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px;
+  box-shadow: 10px 0px 10px rgba(133, 132, 132, 0.514);
+  background-color: white;
+}
+/* Estilo general del contenedor de opciones */
+.opciones-login {
+  display: flex; /* Opcional: si quieres poner las cajas una al lado de la otra */
+  flex-direction: column; /* Para que estén una debajo de la otra como en la imagen */
+  gap: 15px; /* Espacio entre las cajas */
+  padding: 20px;
+  max-width: 400px; /* Ancho máximo para que se vean bien */
+  margin: auto; /* Centrar el contenedor */
+}
+
+/* Estilo de la caja principal (el enlace) */
+.caja-opcion {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Para separar el contenido de la flecha */
+  text-decoration: none; /* Quitar el subrayado del enlace */
+  color: #333; /* Color de texto predeterminado */
+  padding: 15px 20px;
+  border: 1px solid #ddd; /* Borde suave */
+  border-radius: 8px; /* Bordes redondeados */
+  background-color: #fff; /* Fondo blanco */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Sombra ligera */
+  transition: all 0.2s ease-in-out; /* Transición suave para los cambios de estado */
+}
+
+/* Estilo al pasar el ratón (Hover) */
+.caja-opcion:hover {
+  border-color: #007bff; /* Borde azul al pasar el ratón */
+  box-shadow: 0 4px 8px rgba(0, 123, 255, 0.1); /* Sombra más pronunciada y azul */
+  transform: translateY(-2px); /* Un pequeño levantamiento visual */
+}
+
+/* Estilo al hacer clic (Active) */
+.caja-opcion:active {
+  background-color: #e6f0ff; /* Fondo más claro o con un toque de color al hacer clic */
+  border-color: #0056b3; /* Borde más oscuro al hacer clic */
+  transform: translateY(0); /* Volver a la posición normal */
+}
+
+/* Estilos de los elementos internos */
+.icono-placeholder {
+  font-size: 24px;
+  margin-right: 15px;
+  /* Estilos para el círculo gris claro del icono */
+  background-color: #f0f0f0;
+  padding: 10px;
+  border-radius: 50%; /* Hacerlo un círculo */
+  line-height: 1; /* Para que el icono esté centrado */
+}
+
+.texto-opcion {
+  flex-grow: 1; /* Ocupar el espacio restante */
+}
+
+.titulo {
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+}
+
+.descripcion {
+  font-size: 13px;
+  color: #666;
+  margin-top: 3px;
+}
+
+.flecha-siguiente {
+  font-size: 20px;
+  color: #ccc; /* Flecha gris claro por defecto */
+  margin-left: 15px;
+  transition: color 0.2s ease-in-out;
+}
+
+/* Color de la flecha al pasar el ratón */
+.caja-opcion:hover .flecha-siguiente {
+  color: #007bff;
+}

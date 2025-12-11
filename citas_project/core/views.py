@@ -240,3 +240,48 @@ def admin_cita_nueva(request):
     return render(request, "core/admin_cita_nueva.html", {
         "mensaje": mensaje
     })
+def registrar_persona(request):
+    mensaje = ""
+
+    if request.method == "POST":
+        username = request.POST.get("username")
+        password = request.POST.get("password")
+        first_name = request.POST.get("first_name")
+        last_name = request.POST.get("last_name")
+        dni = request.POST.get("dni")
+        telefono = request.POST.get("telefono")
+
+        # Validar username repetido
+        if User.objects.filter(username=username).exists():
+            mensaje = "El nombre de usuario ya está registrado."
+
+        # Validar DNI repetido
+        elif Paciente.objects.filter(dni=dni).exists():
+            mensaje = "El DNI ya está registrado."
+
+        # Validar teléfono repetido
+        elif Paciente.objects.filter(telefono=telefono).exists():
+            mensaje = "El número de teléfono ya está registrado."
+
+        else:
+            # Crear usuario
+            user = User.objects.create_user(
+                username=username,
+                password=password,
+                first_name=first_name,
+                last_name=last_name
+            )
+
+            # Crear paciente
+            Paciente.objects.create(
+                user=user,
+                dni=dni,
+                telefono=telefono
+            )
+
+            # Redirigir al login
+            return redirect("login_persona")
+
+    return render(request, "core/registrar_persona.html", {
+        "mensaje": mensaje
+    })

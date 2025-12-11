@@ -1,0 +1,195 @@
+/* ==================================================================== */
+/* 0. CONFIGURACIÓN GENERAL Y FONDO (Body) */
+/* ==================================================================== */
+
+/* Aseguramos que HTML y Body ocupen el 100% para evitar problemas de scroll */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    
+    /* Configuración del fondo con imagen y superposición (overlay) */
+    /* El primer valor (linear-gradient) es el overlay azul oscuro semi-transparente. */
+    /* Reemplaza '../fondo.avif' con la ruta correcta de tu imagen. */
+    background-image: linear-gradient(rgba(0, 0, 50, 0.5), rgba(0, 0, 50, 0.5)), url('../fondo.avif');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed; 
+}
+
+
+/* ==================================================================== */
+/* 1. CONTENEDOR DE CENTRADO (Solución al problema de scroll) */
+/* ==================================================================== */
+
+.center-wrapper {
+    display: flex;
+    justify-content: center; /* Centrado horizontal */
+    align-items: center; /* Centrado vertical */
+    
+    /* Usamos 90vh para que ocupe casi todo el viewport sin chocar 
+       con la barra de navegación superior de la plantilla base. */
+    height: 90vh; 
+    width: 100%;
+    padding: 20px 0;
+}
+
+/* ==================================================================== */
+/* 2. LA CAJA DE LOGIN (form-card) */
+/* ==================================================================== */
+.login-container {
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 10px;
+    /* Sombra fuerte para resaltar sobre el fondo oscuro */
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3); 
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    border-top: 5px solid #3498db; 
+    animation: fadeIn 0.5s ease-out; 
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Títulos y Subtítulos --- */
+.form-title {
+    color: #2c3e50;
+    margin-bottom: 5px;
+    font-size: 1.6em;
+}
+.form-title i {
+    color: #3498db;
+    margin-right: 8px;
+}
+
+.subtitle {
+    color: #7f8c8d;
+    margin-bottom: 25px;
+    font-size: 0.95em;
+}
+
+
+/* ==================================================================== */
+/* 3. FORMULARIO Y CAMPOS (Estilizando {{ form.as_p }}) */
+/* ==================================================================== */
+
+/* Estilo para los mensajes de error */
+.error-message {
+    background-color: #fcebeb; 
+    color: #e74c3c;
+    border: 1px solid #e74c3c;
+    padding: 12px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    font-size: 0.9em;
+    text-align: left;
+}
+.error-message i {
+    margin-right: 8px;
+}
+
+/* Contenedor de campos para forzar el ancho */
+.form-fields {
+    margin-top: 20px;
+}
+
+/* Estilo para cada <p> generado por form.as_p */
+.form-fields p {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+/* Estilo para la etiqueta <label> */
+.form-fields label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: #34495e;
+    font-size: 0.9em;
+}
+
+/* Estilo para los inputs */
+.form-fields input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #bdc3c7;
+    border-radius: 6px;
+    box-sizing: border-box; 
+    font-size: 1em;
+    transition: border-color 0.3s;
+}
+
+.form-fields input:focus {
+    border-color: #3498db;
+    outline: none;
+    box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
+}
+
+
+/* ==================================================================== */
+/* 4. BOTÓN DE INGRESO */
+/* ==================================================================== */
+.submit-button {
+    width: 100%;
+    background-color: #3498db;
+    color: white;
+    padding: 14px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.1s;
+    margin-top: 20px;
+}
+
+.submit-button:hover {
+    background-color: #2980b9;
+}
+
+.submit-button:active {
+    background-color: #1e6c9c;
+    transform: scale(0.99);
+}
+.submit-button i {
+    margin-right: 8px;
+}
+
+/* ==================================================================== */
+/* 5. ENLACES ADICIONALES */
+/* ==================================================================== */
+.links-container {
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid #ecf0f1;
+    text-align: center;
+}
+
+.links-container a {
+    display: block;
+    color: #3498db;
+    text-decoration: none;
+    font-size: 0.9em;
+    margin-bottom: 10px;
+    transition: color 0.3s;
+}
+
+.links-container a:hover {
+    color: #2980b9;
+}
+
+.link-register {
+    font-weight: 500;
+}
+.link-register strong {
+    font-weight: 700;
+}

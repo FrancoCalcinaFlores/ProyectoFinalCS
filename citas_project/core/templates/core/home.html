@@ -3,16 +3,58 @@
 
 {% block title %}Inicio{% endblock %}
 
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'core/css/login.css' %}">
+{% endblock %}
+
 {% block content %}
-<div class="center-card">
-    <img src="{% static 'core/Logoinicio.png' %}" alt="Logo inicio" class="login-image">
+<main class="principal">
+  <section class="caja">
 
-    <h2>Bienvenido al sistema de citas</h2>
-    <p>Seleccione el tipo de acceso para ingresar al sistema.</p>
+    <!-- Columna Izquierda -->
+    <article class="barra1">
+      <h3>MediCare</h3>
+      <h2>Tu salud es nuestra prioridad</h2>
+      <p>
+        Acceda a un sistema de consulta médica diseñado para facilitar la
+        revisión, programación y reserva de citas. Organice sus atenciones
+        de forma segura, ordenada y eficiente.
+      </p>
+      <!-- Columna Derecha <img src="{% static 'core/Logoinicio.png' %}" alt="Logo" class="img_logo" />-->
+    </article>
 
-    <div style="margin-top:20px; display:flex; flex-direction:column; gap:10px; align-items:center;">
-        <a href="{% url 'login_persona' %}" class="btn" style="min-width:200px;">Login Persona</a>
-        <a href="{% url 'login_admin' %}" class="btn btn-secondary" style="min-width:200px;">Login Admin</a>
-    </div>
-</div>
+    <!-- Columna Derecha -->
+    <article class="barra2">
+      <section class="login">
+        <h2>Bienvenido</h2>
+        <p>Seleccione su tipo de acceso para ingresar al sistema.</p>
+
+        <div class="opciones-login">
+
+          <!-- Botón Paciente -->
+          <a href="{% url 'login_persona' %}" class="caja-opcion paciente">
+            <div class="icono-placeholder">👤</div>
+            <div class="texto-opcion">
+              <div class="titulo">Soy Paciente</div>
+              <div class="descripcion">Agendar citas, ver historial</div>
+            </div>
+            <span class="flecha-siguiente">→</span>
+          </a>
+
+          <!-- Botón Administrador -->
+          <a href="{% url 'login_admin' %}" class="caja-opcion administrador">
+            <div class="icono-placeholder">🛡️</div>
+            <div class="texto-opcion">
+              <div class="titulo">Administrador</div>
+              <div class="descripcion">Gestión de clínica y doctores</div>
+            </div>
+            <span class="flecha-siguiente">→</span>
+          </a>
+
+        </div>
+      </section>
+    </article>
+
+  </section>
+</main>
 {% endblock %}
