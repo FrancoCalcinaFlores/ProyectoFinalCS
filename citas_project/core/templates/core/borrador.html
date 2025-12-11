@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Iniciar Sesión</title>
+    <link rel="stylesheet" href="../../static/core/css/home.css" />
+  </head>
+
+  <body>
+    <main class="login">
+      <div class="login-container">
+        <h2 class="form-title">Iniciar Sesión</h2>
+        <p class="subtitle">Accede a tu cuenta de paciente.</p>
+
+        <form method="post" action="" class="login-form">
+          <div class="form-group">
+            <label for="email">Correo Electrónico:</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="ejemplo@correo.com"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="password">Contraseña:</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              placeholder=""
+              required
+            />
+          </div>
+
+          <button type="submit" class="submit-button">Ingresar</button>
+        </form>
+
+        <div class="links-container">
+          <a href="registrar_persona.html" class="link-register"
+            >Crear cuenta nueva</a
+          >
+          <a href="index.html" class="link-home">Volver al inicio</a>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

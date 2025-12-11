@@ -7,7 +7,7 @@ urlpatterns = [
     # Logins
     path('persona/login/', views.login_persona, name='login_persona'),
     path('panel-admin/login/', views.login_admin, name='login_admin'),
-
+     path('persona/registrar/', views.registrar_persona, name='registrar_persona'),
     # Panel persona
     path('persona/dashboard/', views.persona_dashboard, name='persona_dashboard'),
     path('persona/citas-disponibles/', views.persona_citas_disponibles, name='persona_citas_disponibles'),
@@ -21,5 +21,6 @@ urlpatterns = [
     path('panel-admin/pacientes/<int:pk>/editar/', views.admin_paciente_editar, name='admin_paciente_editar'),
     path('panel-admin/calendario/', views.admin_calendario, name='admin_calendario'),
     path('panel-admin/citas/nueva/', views.admin_cita_nueva, name='admin_cita_nueva'),
+
 ]
 
