@@ -1,0 +1,51 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Crear nuevo paciente{% endblock %}
+
+{% block content %}
+<div style="max-width: 700px; margin: 0 auto;">
+    <h2>Crear nuevo paciente</h2>
+    <p>Registra un paciente y genera su usuario de acceso al sistema.</p>
+
+    {% if mensaje %}
+        <p class="mensajes-error">{{ mensaje }}</p>
+    {% endif %}
+
+    <form method="post" style="background:white; padding:20px 25px; border-radius:12px; box-shadow:0 2px 6px rgba(0,0,0,0.08);">
+        {% csrf_token %}
+
+        <h3>Datos de usuario</h3>
+        <p>
+            <label>Usuario:</label><br>
+            <input type="text" name="username" required>
+        </p>
+        <p>
+            <label>Contraseña:</label><br>
+            <input type="password" name="password" required>
+        </p>
+        <p>
+            <label>Nombres:</label><br>
+            <input type="text" name="first_name">
+        </p>
+        <p>
+            <label>Apellidos:</label><br>
+            <input type="text" name="last_name">
+        </p>
+
+        <h3>Datos del paciente</h3>
+        <p>
+            <label>DNI:</label><br>
+            <input type="text" name="dni" required>
+        </p>
+        <p>
+            <label>Teléfono:</label><br>
+            <input type="text" name="telefono" required>
+        </p>
+
+        <div style="display:flex; gap:10px; margin-top:10px; flex-wrap:wrap;">
+            <button type="submit" class="btn">💾 Guardar paciente</button>
+            <a href="{% url 'admin_pacientes_lista' %}" class="btn btn-secondary">⏪ Volver al listado</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

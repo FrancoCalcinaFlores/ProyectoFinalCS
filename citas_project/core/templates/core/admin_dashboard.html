@@ -1,0 +1,50 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Panel del Administrador{% endblock %}
+
+{% block content %}
+<div style="max-width: 800px; margin: 0 auto; text-align:center;">
+    <h2 style="font-size:26px;">Panel del Administrador</h2>
+    <p style="color:#7f8c8d;">Resumen general del sistema de citas médicas.</p>
+
+    <div class="summary-card" style="justify-content:center;">
+        <div class="summary-item">
+            <div class="summary-label">Total de pacientes</div>
+            <div class="summary-value">{{ total_pacientes }}</div>
+        </div>
+        <div class="summary-item">
+            <div class="summary-label">Total de citas</div>
+            <div class="summary-value">{{ total_citas }}</div>
+        </div>
+        <div class="summary-item">
+            <div class="summary-label">Consultas pendientes</div>
+            <div class="summary-value">{{ consultas_pendientes }}</div>
+        </div>
+    </div>
+
+    <h3 style="margin-top:25px;">Módulos</h3>
+
+    <div class="module-grid">
+        <div class="module-card">
+            <a href="{% url 'admin_consultas' %}">Consultas de pacientes</a>
+            <p>Revisa los mensajes enviados por los pacientes y marca cuáles ya fueron atendidos.</p>
+        </div>
+        <div class="module-card">
+            <a href="{% url 'admin_pacientes_lista' %}">Ver / modificar pacientes</a>
+            <p>Explora la lista de pacientes y edita sus datos de contacto.</p>
+        </div>
+        <div class="module-card">
+            <a href="{% url 'admin_paciente_nuevo' %}">Crear nuevo paciente</a>
+            <p>Registra un nuevo paciente generando su usuario y credenciales.</p>
+        </div>
+        <div class="module-card">
+            <a href="{% url 'admin_calendario' %}">Calendario de citas</a>
+            <p>Consulta todas las citas médicas ordenadas por fecha y hora.</p>
+        </div>
+    </div>
+
+    <div style="margin-top:20px;">
+        <a href="{% url 'home' %}" class="btn btn-secondary">⏪ Volver al inicio</a>
+    </div>
+</div>
+{% endblock %}

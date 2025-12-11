@@ -1,0 +1,101 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Panel del Paciente{% endblock %}
+
+{% block content %}
+    <h2>Panel del Paciente</h2>
+
+    <div class="summary-card">
+        <div class="summary-item">
+            <div class="summary-label">Paciente</div>
+            <div class="summary-value">
+                {{ paciente.user.first_name }} {{ paciente.user.last_name }}
+            </div>
+        </div>
+        <div class="summary-item">
+            <div class="summary-label">Número de citas</div>
+            <div class="summary-value">{{ citas|length }}</div>
+        </div>
+        <div class="summary-item">
+            <div class="summary-label">Último acceso</div>
+            <div class="summary-value">{{ user.last_login|default:"-" }}</div>
+        </div>
+    </div>
+
+    <h3>Mis módulos</h3>
+
+    <div class="module-grid">
+        <div class="module-card">
+            <a href="#citas">Ver mis citas</a>
+            <p>Consulta todas tus citas médicas registradas en el sistema.</p>
+        </div>
+
+        <div class="module-card">
+            <a href="#consulta">Enviar consulta al administrador</a>
+            <p>Solicita cambio de fecha u otra duda relacionada con tus citas.</p>
+        </div>
+
+        <div class="module-card">
+            <a href="#calendario">Calendario de mis citas</a>
+            <p>Visualiza tus citas ordenadas cronológicamente.</p>
+        </div>
+
+        <!-- NUEVO módulo -->
+        <div class="module-card">
+            <a href="{% url 'persona_citas_disponibles' %}">Tomar una cita</a>
+            <p>Selecciona una cita disponible creada por el administrador.</p>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- Sección: Citas -->
+    <h3 id="citas">Mis citas médicas</h3>
+    {% if citas %}
+        <table>
+            <tr>
+                <th>Fecha</th>
+                <th>Hora</th>
+                <th>Doctor</th>
+                <th>Motivo</th>
+            </tr>
+            {% for c in citas %}
+            <tr>
+                <td>{{ c.fecha }}</td>
+                <td>{{ c.hora }}</td>
+                <td>{{ c.doctor }}</td>
+                <td>{{ c.motivo }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>No tienes citas registradas.</p>
+    {% endif %}
+
+    <hr>
+
+    <!-- Sección: Consulta -->
+    <h3 id="consulta">Enviar consulta para cambiar fecha</h3>
+    {% if enviado %}
+        <p class="mensajes-ok">Consulta enviada correctamente. El administrador revisará tu mensaje.</p>
+    {% endif %}
+    <form method="post">
+        {% csrf_token %}
+        {{ form_consulta.as_p }}
+        <button type="submit" class="btn">Enviar consulta</button>
+    </form>
+
+    <hr>
+
+    <!-- Sección: Calendario -->
+    <h3 id="calendario">Calendario de mis citas</h3>
+    {% if citas %}
+        <ul>
+            {% for c in citas %}
+                <li>{{ c.fecha }} - {{ c.hora }} - Dr(a). {{ c.doctor }} : {{ c.motivo }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Sin citas en el calendario.</p>
+    {% endif %}
+{% endblock %}

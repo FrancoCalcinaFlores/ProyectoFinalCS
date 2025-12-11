@@ -1,0 +1,44 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Calendario de Citas{% endblock %}
+
+{% block content %}
+    <h2>Calendario de Citas (todas)</h2>
+
+    <p>
+        <a class="btn btn-secondary" href="{% url 'admin_cita_nueva' %}">Crear nueva cita</a>
+    </p>
+
+    {% if citas %}
+        <table>
+            <tr>
+                <th>Fecha</th>
+                <th>Hora</th>
+                <th>Doctor</th>
+                <th>Paciente</th>
+                <th>Motivo</th>
+            </tr>
+            {% for c in citas %}
+            <tr>
+                <td>{{ c.fecha }}</td>
+                <td>{{ c.hora }}</td>
+                <td>{{ c.doctor }}</td>
+                <td>
+                    {% if c.paciente %}
+                        {{ c.paciente.user.first_name }} {{ c.paciente.user.last_name }}
+                    {% else %}
+                        <em>Disponible</em>
+                    {% endif %}
+                </td>
+                <td>{{ c.motivo }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>No hay citas registradas.</p>
+    {% endif %}
+
+    <p style="margin-top:15px;">
+        <a href="{% url 'admin_dashboard' %}">Volver al panel</a>
+    </p>
+{% endblock %}

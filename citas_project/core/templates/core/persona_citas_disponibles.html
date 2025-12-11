@@ -1,0 +1,47 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Citas disponibles{% endblock %}
+
+{% block content %}
+    <h2>Citas disponibles</h2>
+
+    {% if citas_disponibles %}
+        <p>
+            Selecciona una de las siguientes citas. Al reservarla, quedará registrada en tu panel
+            y en el calendario del administrador.
+        </p>
+
+        <table>
+            <tr>
+                <th>Fecha</th>
+                <th>Hora</th>
+                <th>Doctor</th>
+                <th>Motivo</th>
+                <th>Acción</th>
+            </tr>
+            {% for c in citas_disponibles %}
+            <tr>
+                <td>{{ c.fecha }}</td>
+                <td>{{ c.hora }}</td>
+                <td>{{ c.doctor }}</td>
+                <td>{{ c.motivo }}</td>
+                <td>
+                    <form method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="cita_id" value="{{ c.id }}">
+                        <button type="submit" class="btn btn-secondary btn-small">
+                            Tomar esta cita
+                        </button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>No hay citas disponibles en este momento.</p>
+    {% endif %}
+
+    <p style="margin-top:15px;">
+        <a href="{% url 'persona_dashboard' %}">Volver al panel del paciente</a>
+    </p>
+{% endblock %}

@@ -1,0 +1,63 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Consultas de pacientes{% endblock %}
+
+{% block content %}
+<div style="max-width: 900px; margin: 0 auto;">
+    <h2>Consultas de pacientes</h2>
+    <p>Revisa los mensajes enviados por los pacientes y marca cuáles ya fueron atendidos.</p>
+
+    <div style="margin-bottom:10px;">
+        <a href="{% url 'admin_dashboard' %}" class="btn btn-secondary">⏪ Volver al panel</a>
+    </div>
+
+    {% if consultas %}
+        <table style="width:100%; border-collapse:collapse; background:white; border-radius:10px; overflow:hidden; box-shadow:0 2px 6px rgba(0,0,0,0.08);">
+            <thead style="background:#f39c12; color:white;">
+                <tr>
+                    <th style="padding:10px; text-align:left;">Paciente</th>
+                    <th style="padding:10px; text-align:left;">Mensaje</th>
+                    <th style="padding:10px; text-align:left;">Fecha</th>
+                    <th style="padding:10px; text-align:left;">Estado</th>
+                    <th style="padding:10px; text-align:left;">Acción</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for c in consultas %}
+                <tr style="border-bottom:1px solid #eee;">
+                    <td style="padding:8px 10px;">
+                        {{ c.paciente.user.first_name }} {{ c.paciente.user.last_name }}
+                    </td>
+                    <td style="padding:8px 10px;">{{ c.mensaje }}</td>
+                    <td style="padding:8px 10px;">{{ c.fecha_envio }}</td>
+                    <td style="padding:8px 10px;">
+                        {% if c.estado == "pendiente" %}
+                            <span style="background:#e74c3c; color:white; padding:3px 8px; border-radius:12px; font-size:12px;">
+                                Pendiente
+                            </span>
+                        {% else %}
+                            <span style="background:#2ecc71; color:white; padding:3px 8px; border-radius:12px; font-size:12px;">
+                                Respondida
+                            </span>
+                        {% endif %}
+                    </td>
+                    <td style="padding:8px 10px;">
+                        {% if c.estado == "pendiente" %}
+                        <form method="post" style="margin:0;">
+                            {% csrf_token %}
+                            <input type="hidden" name="consulta_id" value="{{ c.id }}">
+                            <button type="submit" class="btn btn-small">Marcar como respondida</button>
+                        </form>
+                        {% else %}
+                            —
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No hay consultas registradas.</p>
+    {% endif %}
+</div>
+{% endblock %}
